@@ -1,0 +1,11 @@
+brew "git"
+brew "openssh"
+brew "node"
+brew "neovim"
+brew "tmux"
+cask "font-jetbrains-mono-nerd-font"
+cask "alacritty"
+cask "firefox"
+cask "yubico-authenticator"
+cask "karabiner-elements"
+
