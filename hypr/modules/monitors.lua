@@ -14,6 +14,6 @@ elseif HOSTNAME == LAPTOP then
 		output = "",
 		mode = "preferred",
 		position = "auto",
-		scale = 1,
+		scale = 1.20,
 	})
 end
