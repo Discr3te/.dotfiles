@@ -8,21 +8,17 @@ local menu = "pkill fuzzel || fuzzel"
 local browser = "firefox"
 local exit_hyprland = "command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"
 
-if HOSTNAME == DESKTOP then
-	MainMod = "SUPER" -- Sets "Windows" key as main modifier
-elseif HOSTNAME == LAPTOP then
-	MainMod = "ALT"
-end
+local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
-hl.bind(MainMod .. " + N", hl.dsp.exec_cmd(exit_hyprland))
+hl.bind(mainMod .. " + N", hl.dsp.exec_cmd(exit_hyprland))
 
 -- Move window to masters
-hl.bind(MainMod .. " + M", hl.dsp.layout("swapwithmaster"))
+hl.bind(mainMod .. " + M", hl.dsp.layout("swapwithmaster"))
 
 -- Fake Fullscreen
 hl.bind(
-	MainMod .. " + F",
+	mainMod .. " + F",
 	hl.dsp.window.fullscreen_state({
 		internal = 0,
 		client = 2,
@@ -32,14 +28,14 @@ hl.bind(
 	})
 )
 
-hl.bind(MainMod .. " + T", hl.dsp.exec_cmd(terminal))
-hl.bind(MainMod .. " + B", hl.dsp.exec_cmd(browser))
-hl.bind(MainMod .. " + E", hl.dsp.exec_cmd(fileManager))
-hl.bind(MainMod .. " + D", hl.dsp.exec_cmd(menu))
-hl.bind(MainMod .. " + Q", hl.dsp.window.close())
+hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(terminal))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
+hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
+hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 
 -- Resize windows
-hl.bind(MainMod .. " + SHIFT + R", function()
+hl.bind(mainMod .. " + SHIFT + R", function()
 	hl.dispatch(hl.dsp.submap("resize"))
 	WindowResizeActiveNotification = hl.notification.create({
 		text = " WINDOW RESIZE ACTIVE\n" .. " Precise Resizeing(1px): hjkl\n" .. " Rough Resizeing(5px): SHIFT + hjkl",
@@ -73,35 +69,35 @@ hl.define_submap("resize", function()
 end)
 
 -- Workspace
-hl.bind(MainMod .. " + " .. 1, hl.dsp.focus({ workspace = 1 }))
-hl.bind(MainMod .. " + SHIFT + " .. 1, hl.dsp.window.move({ workspace = 1 }))
+hl.bind(mainMod .. " + " .. 1, hl.dsp.focus({ workspace = 1 }))
+hl.bind(mainMod .. " + SHIFT + " .. 1, hl.dsp.window.move({ workspace = 1 }))
 
-hl.bind(MainMod .. " + " .. 2, hl.dsp.focus({ workspace = 2 }))
-hl.bind(MainMod .. " + SHIFT + " .. 2, hl.dsp.window.move({ workspace = 2 }))
+hl.bind(mainMod .. " + " .. 2, hl.dsp.focus({ workspace = 2 }))
+hl.bind(mainMod .. " + SHIFT + " .. 2, hl.dsp.window.move({ workspace = 2 }))
 
-hl.bind(MainMod .. " + " .. 3, hl.dsp.focus({ workspace = 3 }))
-hl.bind(MainMod .. " + SHIFT + " .. 3, hl.dsp.window.move({ workspace = 3 }))
+hl.bind(mainMod .. " + " .. 3, hl.dsp.focus({ workspace = 3 }))
+hl.bind(mainMod .. " + SHIFT + " .. 3, hl.dsp.window.move({ workspace = 3 }))
 
-hl.bind(MainMod .. " + " .. 4, hl.dsp.focus({ workspace = 4 }))
-hl.bind(MainMod .. " + SHIFT + " .. 4, hl.dsp.window.move({ workspace = 4 }))
+hl.bind(mainMod .. " + " .. 4, hl.dsp.focus({ workspace = 4 }))
+hl.bind(mainMod .. " + SHIFT + " .. 4, hl.dsp.window.move({ workspace = 4 }))
 
-hl.bind(MainMod .. " + " .. 5, hl.dsp.focus({ workspace = 5 }))
-hl.bind(MainMod .. " + SHIFT + " .. 5, hl.dsp.window.move({ workspace = 5 }))
+hl.bind(mainMod .. " + " .. 5, hl.dsp.focus({ workspace = 5 }))
+hl.bind(mainMod .. " + SHIFT + " .. 5, hl.dsp.window.move({ workspace = 5 }))
 
 -- Move focus to window with MainMod + arrow keys
-hl.bind(MainMod .. " + H", hl.dsp.focus({ direction = "left" }))
-hl.bind(MainMod .. " + L", hl.dsp.focus({ direction = "right" }))
-hl.bind(MainMod .. " + K", hl.dsp.focus({ direction = "up" }))
-hl.bind(MainMod .. " + J", hl.dsp.focus({ direction = "down" }))
+hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
+hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
+hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
+hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
 
 -- Special workspace (scratchpad)
-hl.bind(MainMod .. " + S", hl.dsp.workspace.toggle_special("spotify"))
-hl.bind(MainMod .. " + R", hl.dsp.workspace.toggle_special("btop"))
-hl.bind(MainMod .. " + C", hl.dsp.workspace.toggle_special("chat"))
+hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("spotify"))
+hl.bind(mainMod .. " + R", hl.dsp.workspace.toggle_special("btop"))
+hl.bind(mainMod .. " + C", hl.dsp.workspace.toggle_special("chat"))
 
 -- Move/resize windows with MainMod + LMB/RMB and dragging
-hl.bind(MainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
-hl.bind(MainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
+hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Laptop multimedia keys for volume and LCD brightness
 if HOSTNAME == LAPTOP then
