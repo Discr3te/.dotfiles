@@ -127,9 +127,56 @@
     "tooltip-format-off": "Bluetooth Off",
     "tooltip-format-no-controller": "No Bluetooth Controller"
   },
-  // "battery": {
-  //
-  // },
+  "battery": {
+    "bat": "BAT0",
+    "adapter": "AC",
+    "full-at-plugged": true,
+    "interval": 60,
+    "states": {
+      "warning": 20,
+      "critical": 5
+    },
+    "events": {
+      "on-charging": "notify-send -u low 'Battery Charging'",
+      "on-charging-100": "notify-send -u low 'Battery Fully Charged'",
+      "on-discharging": "notify-send -u low 'AC Disconnected' 'Running on Battery'",
+      "on-discharging-warning": "notify-send -u normal 'Low Battery' '20% remaining.'",
+      "on-discharging-critical": "notify-send -u critical 'Very Low Battery' '5% remaining.'"
+    },
+    "format": "<span letter_spacing='9000'>{icon}</span>{capacity}%",
+    "format-icons": {
+      "charging": [
+        "󰢟",
+        "󰢜",
+        "󰂆",
+        "󰂇",
+        "󰂈",
+        "󰢝",
+        "󰂉",
+        "󰢞",
+        "󰂊",
+        "󰂋",
+        "󰂅"
+      ],
+      "discharging": [
+        "󰂎",
+        "󰁺",
+        "󰁻",
+        "󰁼",
+        "󰁽",
+        "󰁾",
+        "󰁿",
+        "󰂀",
+        "󰂁",
+        "󰂂",
+        "󰁹"
+      ],
+      "plugged": [
+        "󰂄"
+      ]
+    },
+    "tooltip-format": "{timeTo}\nPower: {power:.1f}W\nCycle Count: {cycles}\nHealth: {health}%"
+  },
   "custom/power": {
     "interval": "once",
     "format": "",

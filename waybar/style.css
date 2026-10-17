@@ -103,6 +103,13 @@ window#waybar {
   padding: 0px 17px;
 }
 
+#battery {
+  background-color: #1b1e2c;
+  color: white;
+  border-radius: 10px;
+  padding: 0px 14px;
+}
+
 #custom-power {
   background-color: #1b1e2c;
   color: white;
