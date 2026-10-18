@@ -53,7 +53,8 @@ hl.config({
 		font_family = "JetBrainsMono Nerd Font",
 		disable_splash_rendering = true,
 		force_default_wallpaper = 1, -- Set to 0 or 1 to disable the anime mascot wallpapers
-		disable_hyprland_logo = true, -- If true disables the random hyprland logo / anime girl background. :(
+		disable_hyprland_logo = true, -- If true disables the random hyprland logo / anime girl background.
+		background_color = "0xff000000",
 	},
 })
 
