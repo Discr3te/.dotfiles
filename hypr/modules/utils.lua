@@ -1,14 +1,15 @@
-function getHostname()
-	local handle = io.popen("hostnamectl hostname", "r")
-	if handle == nil or handle == "" then
+function get_hostname()
+	local f = io.open("/etc/hostname", "r")
+	if not f then
 		hl.notification.create({
-			text = "Hostname error",
-			timeout = 250,
+			text = [[hypr/modules/utils.lua: get_hostname
+      failed to read hostname.]],
+			timeout = 10000,
 			icon = "warning",
 		})
-		return 0
+		return ""
 	end
-	local hostname = handle:read("*a"):gsub("\n$", "")
-	handle:close()
-	return hostname
+	local name = f:read("*l") or ""
+	f:close()
+	return name
 end
