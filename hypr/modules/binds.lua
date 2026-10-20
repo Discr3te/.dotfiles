@@ -91,7 +91,7 @@ hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
 
 -- Special workspace (scratchpad)
-hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("spotify"))
+hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("music"))
 hl.bind(mainMod .. " + R", hl.dsp.workspace.toggle_special("btop"))
 hl.bind(mainMod .. " + C", hl.dsp.workspace.toggle_special("chat"))
 

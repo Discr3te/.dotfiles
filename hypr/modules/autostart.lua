@@ -10,7 +10,6 @@ hl.on("hyprland.start", function()
 	end
 	hl.exec_cmd("mako")
 	hl.exec_cmd("hypridle")
-	hl.exec_cmd("alacritty --title spotify -e spotify_player")
 	hl.exec_cmd("alacritty --title btop -e btop")
 	hl.exec_cmd("discord")
 	hl.exec_cmd("systemctl --user start hyprpolkitagent")

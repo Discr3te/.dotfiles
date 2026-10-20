@@ -85,13 +85,13 @@ hl.window_rule({
 	size = { "(monitor_w*0.80)", "(monitor_h*0.80)" },
 })
 
-hl.window_rule({
-	name = "spotify",
-	match = {
-		initial_class = "spotify_player",
-	},
-	workspace = "special:spotify silent",
-})
+-- hl.window_rule({
+-- 	name = "music",
+-- 	match = {
+-- 		initial_class = "",
+-- 	},
+-- 	workspace = "special:music silent",
+-- })
 
 hl.window_rule({
 	name = "discord",
