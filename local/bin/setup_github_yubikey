@@ -5,6 +5,8 @@ KT_AUTH=auth
 KT_SIGNING=signing
 
 SSH_DIR="$HOME"/.ssh
+ALLOWED_SIGNERS_FILE="$SSH_DIR/allowed_signers"
+SSH_CONFIG_FILE="$SSH_DIR/config"
 
 # for bash select
 COLUMNS=1
@@ -25,7 +27,7 @@ create_keys() {
   ssh-keygen "${keygen_opts[@]}"
 }
 
-write_allowed_signers() {
+append_allowed_signers() {
   local user_email
   local signing_key
   user_email=$(git config user.email)
@@ -33,15 +35,15 @@ write_allowed_signers() {
   IFS= read -r signing_key <"$SSH_DIR/id_ed25519_sk_git_$KT_SIGNING.pub"
 
   printf "%s" "Creating allowed signers file..."
-  echo "$user_email namespaces=\"git\" $signing_key" >>"$SSH_DIR/allowed_signers"
+  echo "$user_email namespaces=\"git\" $signing_key" >>"$ALLOWED_SIGNERS_FILE"
 }
 
-write_config_file() {
+append_config_file() {
   printf "%s" "Creating config file..."
-  mkdir -p "$SSH_DIR/config"
-  cat >"$SSH_DIR/config" <<EOF
+  mkdir -p "$SSH_CONFIG_FILE"
+  cat >>"$SSH_CONFIG_FILE" <<EOF
   Host github.com
-  IdentityFile ~/.ssh/id_ed25519_sk_git_$KT_SIGNING
+  IdentityFile ~/.ssh/id_ed25519_sk_git_$KT_AUTH
   IdentitiesOnly yes
 EOF
 }
@@ -54,7 +56,7 @@ select_choice() {
   )
   local new_key_opts=(
     "Create a new git authentication key"
-    "Creat a new git signing key"
+    "Create a new git signing key"
     "Create both a new git signing key and authentication key"
     "Go Back"
     "Quit"
@@ -70,7 +72,6 @@ select_choice() {
       select choice in "${new_key_opts[@]}"; do
         case $choice in
         "Create a new git authentication key")
-          # read -rp "Please enter the username for this account: " username
           clear
           create_keys $KT_AUTH
           clear
@@ -81,10 +82,9 @@ select_choice() {
           select_choice
           ;;
         "Create a new git signing key")
-          # read -rp "Please enter the username for this account: " username
           clear
           create_keys $KT_SIGNING
-          write_allowed_signers
+          append_allowed_signers
           clear
           printf "%s\n" "Copy this $KT_SIGNING key into your Git-based platform:"
           cat "$SSH_DIR/id_ed25519_sk_git_$KT_SIGNING.pub"
@@ -93,13 +93,12 @@ select_choice() {
           select_choice
           ;;
         "Create both a new git signing key and authentication key")
-          # read -rp "Please enter the username for this account: " username
           clear
           create_keys $KT_AUTH
           echo ""
           clear
           create_keys $KT_SIGNING
-          write_allowed_signers
+          append_allowed_signers
           clear
           printf "%s\n" "Copy this $KT_AUTH key into your Git-based platform:"
           cat "$SSH_DIR/id_ed25519_sk_git_$KT_AUTH.pub"
@@ -125,12 +124,12 @@ select_choice() {
     "Download existing keys from your hardware key")
       pushd "$SSH_DIR" || exit
       ssh-keygen -K
-      write_allowed_signers
-      write_config_file
       mv "$SSH_DIR/id_ed25519_sk_rk_git_$KT_SIGNING.pub" "$SSH_DIR/id_ed25519_sk_git_$KT_SIGNING.pub"
       mv "$SSH_DIR/id_ed25519_sk_rk_git_$KT_SIGNING" "$SSH_DIR/id_ed25519_sk_git_$KT_SIGNING"
       mv "$SSH_DIR/id_ed25519_sk_rk_git_$KT_AUTH.pub" "$SSH_DIR/id_ed25519_sk_git_$KT_AUTH.pub"
       mv "$SSH_DIR/id_ed25519_sk_rk_git_$KT_AUTH" "$SSH_DIR/id_ed25519_sk_git_$KT_AUTH"
+      append_allowed_signers
+      append_config_file
       popd || exit
       clear
       printf "%s\n" "Your existing keys have successfully been downloaded to: $SSH_DIR."
