@@ -40,7 +40,6 @@ append_allowed_signers() {
 
 append_config_file() {
   printf "%s" "Creating config file..."
-  mkdir -p "$SSH_CONFIG_FILE"
   cat >>"$SSH_CONFIG_FILE" <<EOF
   Host github.com
   IdentityFile ~/.ssh/id_ed25519_sk_git_$KT_AUTH
