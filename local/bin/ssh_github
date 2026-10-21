@@ -4,6 +4,8 @@ KT_AUTH=auth
 KT_SIGNING=signing
 SSH_DIR="$HOME"/.ssh
 
+COLUMNS=1
+
 create_keys() {
   local key_type=$1
   # local username=$2
@@ -27,22 +29,22 @@ write_allowed_signers() {
   local signing_key
   user_email=$(git config user.email)
 
-  IFS= read -r signing_key < "$SSH_DIR/id_ed25519_sk_git_$KT_SIGNING.pub"
+  IFS= read -r signing_key <"$SSH_DIR/id_ed25519_sk_git_$KT_SIGNING.pub"
 
   echo "$user_email namespaces=\"git\" $signing_key" >>"$SSH_DIR/allowed_signers"
 
   printf "%s" "Creating config file for ssh"
   mkdir -p "$SSH_DIR/config"
-  cat > "$SSH_DIR/config" <<EOF
+  cat >"$SSH_DIR/config" <<EOF
 Host github.com
   IdentityFile ~/.ssh/id_ed25519_sk_git_$KT_SIGNING
   IdentitiesOnly yes
 EOF
 
-mv "$SSH_DIR/id_ed25519_sk_rk_git_$KT_SIGNING.pub" "$SSH_DIR/id_ed25519_sk_git_$KT_SIGNING.pub" 
-mv "$SSH_DIR/id_ed25519_sk_rk_git_$KT_SIGNING" "$SSH_DIR/id_ed25519_sk_git_$KT_SIGNING"
-mv "$SSH_DIR/id_ed25519_sk_rk_git_$KT_SIGNING.pub" "$SSH_DIR/id_ed25519_sk_git_$KT_AUTH.pub"
-mv "$SSH_DIR/id_ed25519_sk_rk_git_$KT_AUTH" "$SSH_DIR/id_ed25519_sk_git_$KT_AUTH"
+  mv "$SSH_DIR/id_ed25519_sk_rk_git_$KT_SIGNING.pub" "$SSH_DIR/id_ed25519_sk_git_$KT_SIGNING.pub"
+  mv "$SSH_DIR/id_ed25519_sk_rk_git_$KT_SIGNING" "$SSH_DIR/id_ed25519_sk_git_$KT_SIGNING"
+  mv "$SSH_DIR/id_ed25519_sk_rk_git_$KT_AUTH.pub" "$SSH_DIR/id_ed25519_sk_git_$KT_AUTH.pub"
+  mv "$SSH_DIR/id_ed25519_sk_rk_git_$KT_AUTH" "$SSH_DIR/id_ed25519_sk_git_$KT_AUTH"
 }
 
 select_choice() {
