@@ -1,4 +1,4 @@
-function get_hostname()
+function getHostname()
 	local f = io.open("/etc/hostname", "r")
 	if not f then
 		hl.notification.create({
