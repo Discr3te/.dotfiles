@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
-yubico_dir=~/.config/Yubico
+YUBICO_DIR=~/.config/Yubico
 
 create_u2f_key() {
   echo "Generating u2f_key..."
-  mkdir -p $yubico_dir
-  if ! pamu2fcfg >"$yubico_dir/u2f_keys.tmp" || [ ! -s "$yubico_dir/u2f_keys.tmp" ]; then
-    rm -f "$yubico_dir/u2f_keys.tmp"
+  mkdir -p $YUBICO_DIR
+  if ! pamu2fcfg >"$YUBICO_DIR/u2f_keys.tmp" || [ ! -s "$YUBICO_DIR/u2f_keys.tmp" ]; then
+    rm -f "$YUBICO_DIR/u2f_keys.tmp"
     echo "Registration failed, PAM not changed" >&2
     exit 1
   fi
-  mv "$yubico_dir/u2f_keys.tmp" "$yubico_dir/u2f_keys"
+  mv "$YUBICO_DIR/u2f_keys.tmp" "$YUBICO_DIR/u2f_keys"
   echo "Finished generating key."
 }
 
@@ -36,7 +36,7 @@ menu_existing_key() {
   done
 }
 
-if [ -f $yubico_dir/u2f_keys ]; then
+if [ -f $YUBICO_DIR/u2f_keys ]; then
   clear
   echo "There is already a u2f_keys file."
   menu_existing_key
