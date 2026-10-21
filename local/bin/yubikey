@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+yubico_dir=~/.config/Yubico
+
+create_u2f_key() {
+  echo "Generating u2f_key..."
+  mkdir -p $yubico_dir
+  if ! pamu2fcfg >"$yubico_dir/u2f_keys.tmp" || [ ! -s "$yubico_dir/u2f_keys.tmp" ]; then
+    rm -f "$yubico_dir/u2f_keys.tmp"
+    echo "Registration failed, PAM not changed" >&2
+    exit 1
+  fi
+  mv "$yubico_dir/u2f_keys.tmp" "$yubico_dir/u2f_keys"
+  echo "Finished generating key."
+}
+
+menu_existing_key() {
+  local options=(
+    "DELETE the existing u2f_keys and CREATE a new one"
+    "Quit"
+  )
+
+  PS3="What would you like to do: "
+  select choice in "${options[@]}"; do
+    case $choice in
+    "DELETE the existing u2f_keys and CREATE a new one")
+      create_u2f_key
+      ;;
+    "Quit")
+      exit
+      ;;
+    *)
+      echo "Invalid option $REPLY"
+      ;;
+    esac
+  done
+}
+
+if [ -f $yubico_dir/u2f_keys ]; then
+  clear
+  echo "There is already a u2f_keys file."
+  menu_existing_key
+else
+  clear
+  echo "u2f_keys has not been generated yet."
+  create_u2f_key
+  sudo sed -i '2i\auth    sufficient  pam_u2f.so cue' /etc/pam.d/sudo
+  sudo sed -i '2i\auth       required   pam_u2f.so cue' /etc/pam.d/su
+  sudo sed -i '2i\auth       required   pam_u2f.so cue' /etc/pam.d/su-l
+  sudo sed -i '$a auth       required     pam_u2f.so cue' /etc/pam.d/login
+  # hyprlock
+  sudo sed -i '$ s/^/#/' /etc/pam.d/hyprlock
+  sudo sed -i '3i\auth        required    pam_u2f.so cue' /etc/pam.d/hyprlock
+  sudo sed -i '3i\auth        requisite   pam_unix.so' /etc/pam.d/hyprlock
+fi
