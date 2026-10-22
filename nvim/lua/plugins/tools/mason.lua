@@ -18,13 +18,16 @@ mason.setup({
 })
 
 local merge_tables = function(...)
-	local merged_tables = {}
-	for _, currentTable in ipairs({ ... }) do
-		for _, value in ipairs(currentTable) do
-			table.insert(merged_tables, value)
+	local merged, seen = {}, {}
+	for _, tbl in ipairs({ ... }) do
+		for _, value in ipairs(tbl) do
+			if not seen[value] then
+				seen[value] = true
+				table.insert(merged, value)
+			end
 		end
 	end
-	return merged_tables
+	return merged
 end
 
 local mason_ensure_installed = function()
@@ -40,7 +43,6 @@ local mason_ensure_installed = function()
 		"css-lsp", -- css
 		"json-lsp", -- json
 		"sqlls", -- sql
-		"pyright", -- python
 	}
 	local dap = {}
 	local linters = {
@@ -64,8 +66,9 @@ local mason_ensure_installed = function()
 
 	registry.refresh(function()
 		for _, tool in ipairs(ensure_installed) do
-			if not registry.is_installed(tool) then
-				registry.get_package(tool):install()
+			local ok, pkg = pcall(registry.get_package, tool)
+			if ok and not pkg:is_installed() and not pkg:is_installing() then
+				pkg:install()
 			end
 		end
 	end)
