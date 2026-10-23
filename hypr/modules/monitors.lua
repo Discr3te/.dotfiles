@@ -15,6 +15,5 @@ elseif HOSTNAME == LAPTOP then
 		mode = "1920x1200@60",
 		position = "auto",
 		scale = 1.33,
-		cm = "edid",
 	})
 end
