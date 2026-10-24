@@ -11,7 +11,7 @@ if HOSTNAME == DESKTOP then
 	})
 elseif HOSTNAME == LAPTOP then
 	hl.monitor({
-		output = "desc:Lenovo Group Limited 0x403D",
+		output = "desc:Lenovo Group Limited LP140WU4-SPK1",
 		mode = "1920x1200@60",
 		position = "auto",
 		scale = 1.33,
