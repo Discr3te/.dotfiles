@@ -142,7 +142,7 @@ end
 if HOSTNAME == LAPTOP then
 	hl.config({
 		input = {
-			kb_options = "caps:swapescape",
+			kb_options = "caps:escape",
 		},
 	})
 end
