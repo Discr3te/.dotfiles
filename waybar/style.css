@@ -1,3 +1,5 @@
+@import "colors.css";
+
 * {
   font-family: "JetBrainsMono Nerd Font Propo, Font Awesome 7 Free";
   font-size: 19px;
@@ -19,100 +21,100 @@ window#waybar {
 }
 
 #workspaces {
-  background-color: #1b1e2c;
+  background-color: @bg;
   border-radius: 10px;
   padding: 4px 4px;
 }
 
 #workspaces button {
   background-color: transparent;
-  color: white;
+  color: @grey;
   border-radius: 10px;
   margin: 0px 5px;
   padding: 0px 13.5px;
   text-shadow: none;
   box-shadow: none;
-  border: 1.5px solid #7aa2f7;
+  border: 1.5px solid @border;
   transition: none;
 }
 
 #workspaces button.active {
-  background-color: #7aa2f7;
-  color: white;
+  background-color: @blue;
+  color: @bg;
   border-radius: 10px;
   margin: 0px 5px;
   padding: 0px 13.5px;
   text-shadow: none;
   box-shadow: none;
-  border: 1.5px solid #7aa2f7;
+  border: 1.5px solid @blue;
   transition: none;
 }
 
 #workspaces button.workspace-hover {
-  background: #7aa2f7;
-  color: white;
+  background: @blue;
+  color: @grey;
   border-radius: 10px;
   margin: 0px 5px;
   padding: 0px 13.5px;
   text-shadow: none;
   box-shadow: none;
-  border: 1.5px solid #7aa2f7;
+  border: 1.5px solid @blue;
   transition: none;
 }
 
 #clock {
-  background-color: #1b1e2c;
-  color: white;
+  background-color: @bg;
+  color: @white;
   border-radius: 10px;
   padding: 0px 15px;
 }
 
 #custom-calculator {
-  background-color: #1b1e2c;
-  color: white;
+  background-color: @bg;
+  color: @white;
   border-radius: 10px;
   padding: 0px 16px;
 }
 
 #custom-screenshot {
-  background-color: #1b1e2c;
-  color: white;
+  background-color: @bg;
+  color: @white;
   border-radius: 10px;
   padding: 0px 13px;
 }
 
 #wireplumber {
-  background-color: #1b1e2c;
-  color: white;
+  background-color: @bg;
+  color: @white;
   border-radius: 10px;
   padding: 0px 10px;
   min-width: 71px;
 }
 
 #network {
-  background-color: #1b1e2c;
-  color: white;
+  background-color: @bg;
+  color: @white;
   border-radius: 10px;
   padding: 0px 13px;
 }
 
 #bluetooth {
-  background-color: #1b1e2c;
-  color: white;
+  background-color: @bg;
+  color: @white;
   border-radius: 10px;
   padding: 0px 17px;
 }
 
 #battery {
-  background-color: #1b1e2c;
-  color: white;
+  background-color: @bg;
+  color: @white;
   border-radius: 10px;
   padding: 0px 14px;
 }
 
 #custom-power {
-  background-color: #1b1e2c;
-  color: white;
+  background-color: @bg;
+  color: @white;
   border-radius: 10px;
   padding: 0px 14px;
 }
