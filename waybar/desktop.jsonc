@@ -125,7 +125,8 @@
     "tooltip-format-disabled": "format-disabled",
     "tooltip-format-on": "Bluetooth On",
     "tooltip-format-off": "Bluetooth Off",
-    "tooltip-format-no-controller": "No Bluetooth Controller"
+    "tooltip-format-no-controller": "No Bluetooth Controller",
+    "on-click": "alacritty -e bluetui"
   },
   "custom/power": {
     "interval": "once",
