@@ -1,0 +1,120 @@
+@import "colors.css";
+
+* {
+  font-family: "JetBrainsMono Nerd Font Propo, Font Awesome 7 Free";
+  font-size: 19px;
+  font-weight: 500;
+  min-height: 0;
+  min-width: 0;
+}
+
+.modules-right {
+  margin-right: 6px;
+}
+
+.modules-left {
+  margin-left: 6px;
+}
+
+window#waybar {
+  background: transparent;
+}
+
+#workspaces {
+  background-color: @bg;
+  border-radius: 10px;
+  padding: 4px 4px;
+}
+
+#workspaces button {
+  background-color: transparent;
+  color: @grey;
+  border-radius: 10px;
+  margin: 0px 5px;
+  padding: 0px 13.5px;
+  text-shadow: none;
+  box-shadow: none;
+  border: 1.5px solid @border;
+  transition: none;
+}
+
+#workspaces button.active {
+  background-color: @blue;
+  color: @bg;
+  border-radius: 10px;
+  margin: 0px 5px;
+  padding: 0px 13.5px;
+  text-shadow: none;
+  box-shadow: none;
+  border: 1.5px solid @blue;
+  transition: none;
+}
+
+#workspaces button.workspace-hover {
+  background: @blue;
+  color: @grey;
+  border-radius: 10px;
+  margin: 0px 5px;
+  padding: 0px 13.5px;
+  text-shadow: none;
+  box-shadow: none;
+  border: 1.5px solid @blue;
+  transition: none;
+}
+
+#clock {
+  background-color: @bg;
+  color: @white;
+  border-radius: 10px;
+  padding: 0px 15px;
+}
+
+#custom-calculator {
+  background-color: @bg;
+  color: @white;
+  border-radius: 10px;
+  padding: 0px 16px;
+}
+
+#custom-screenshot {
+  background-color: @bg;
+  color: @white;
+  border-radius: 10px;
+  padding: 0px 13px;
+}
+
+#wireplumber {
+  background-color: @bg;
+  color: @white;
+  border-radius: 10px;
+  padding: 0px 10px;
+  min-width: 71px;
+}
+
+#network {
+  background-color: @bg;
+  color: @white;
+  border-radius: 10px;
+  padding: 0px 13px;
+}
+
+#bluetooth {
+  background-color: @bg;
+  color: @white;
+  border-radius: 10px;
+  padding: 0px 17px;
+}
+
+#battery {
+  background-color: @bg;
+  color: @white;
+  border-radius: 10px;
+  padding: 0px 14px;
+}
+
+#custom-power {
+  background-color: @bg;
+  color: @red;
+  border-radius: 10px;
+  padding: 0px 14px;
+}

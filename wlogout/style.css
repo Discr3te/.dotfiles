@@ -1,0 +1,69 @@
+* {
+  background-image: none;
+  box-shadow: none;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 15px;
+}
+
+window {
+  background-color: rgba(10, 10, 10, 0.6);
+}
+
+button {
+  background-color: rgba(130, 130, 130, 0.8);
+  outline-style: none;
+  border: none;
+  border-width: 0px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50%;
+  border-radius: 0px;
+  box-shadow: none;
+  text-shadow: none;
+  animation: gradient_f 20s ease-in infinite;
+  margin: 350px 0px;
+}
+
+button:hover {
+  background-color: rgba(130, 130, 130, 1);
+  background-size: 60%;
+  border-radius: 30px;
+  animation: gradient_f 20s ease-in infinite;
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.28, 1.682);
+}
+
+button:hover#shutdown {
+  margin: 325px 0px 325px 350px;
+}
+
+button:hover#suspend {
+  margin: 325px 0px 325px 0px;
+}
+
+button:hover#reboot {
+  margin: 325px 0px 325px 0px;
+}
+
+button:hover#lock {
+  margin: 325px 350px 325px 0px;
+}
+
+#shutdown {
+  background-image: image(url("./icons/shutdown.svg"));
+  border-radius: 50px 0px 0px 50px;
+  margin-left: 375px;
+}
+
+#suspend {
+  background-image: image(url("./icons/suspend.svg"));
+}
+
+#reboot {
+  background-image: image(url("./icons/reboot.svg"));
+}
+
+#lock {
+  background-image: image(url("./icons/lock.svg"));
+  border-radius: 0px 50px 50px 0px;
+  margin-right: 375px;
+}

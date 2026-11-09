@@ -1,0 +1,137 @@
+{
+  "spacing": 6,
+  "margin-top": 6,
+  "height": 37,
+  "reload_style_on_change": true,
+  "layer": "top",
+  "postion": "top",
+  "modules-left": [
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "custom/calculator",
+    "custom/screenshot",
+    "wireplumber",
+    "network",
+    "bluetooth",
+    "custom/power"
+  ],
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5"
+    },
+    "tooltip": false,
+    "persistent-only": true,
+    "persistent-workspaces": {
+      "*": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  "clock": {
+    "interval": 60,
+    "timezone": "",
+    "format": "{:%I:%M %p • %A, %b %d}",
+    "tooltip-format": "<tt><span size='80%'>{calendar}</span></tt>",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "on-scroll": -1,
+      "format": {
+        "months": "<span color='#d9534f'><b>{}</b></span>",
+        "days": "<span color='white'><b>{}</b></span>",
+        "weekdays": "<span color='white'><b>{}</b></span>",
+        "today": "<span color='#ff3b30'><b>{}</b></span>"
+      }
+    }
+  },
+  "custom/calculator": {
+    "interval": "once",
+    "format": "",
+    "tooltip": false
+  },
+  "custom/screenshot": {
+    "interval": "once",
+    "format": "󰹑",
+    "on-click": "grim -g \"$(slurp -d)\" - | satty --early-exit --filename -",
+    "tooltip": false
+  },
+  "wireplumber": {
+    "format": "<span letter_spacing='9000'>{icon}</span>{volume}%",
+    "format-muted": "<span letter_spacing='9000'></span>{volume}%",
+    "format-icons": {
+      "default": [
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    "tooltip": true,
+    "tooltip-format": "",
+    "scroll-step": 5,
+    "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "alacritty -t wiremix -e wiremix"
+  },
+  "network": {
+    "interval": "once",
+    "on-click": "alacritty -e nmtui",
+    "format-wifi": "{icon}",
+    "format-linked": "{icon}",
+    "format-ethernet": "󰈀",
+    "format-disconnected": "󰤭",
+    "format-disabled": "󰤭",
+    "format-icons": {
+      "wifi": [
+        "󰤯",
+        "󰤟",
+        "󰤢",
+        "󰤥",
+        "󰤨"
+      ],
+      "linked": [
+        "󰤫",
+        "󰤠",
+        "󰤣",
+        "󰤦",
+        "󰤩"
+      ]
+    },
+    "tooltip-format-wifi": "SSID: {essid}\nIP: {ipaddr}\nFreq: {frequency}",
+    "tooltip-format-linked": "No Internet Connection",
+    "tooltip-format-ethernet": "SSID: {essid}\nIP: {ipaddr}",
+    "tooltip-format-disconnected": "WiFi On",
+    "tooltip-format-disabled": "WiFi Off"
+  },
+  "bluetooth": {
+    "format-connected": "",
+    "format-disabled": "",
+    "format-on": "",
+    "format-off": "󰂲",
+    "format-no-controller": "󰂲",
+    "tooltip-format-connected": "format-connected",
+    "tooltip-format-disabled": "format-disabled",
+    "tooltip-format-on": "Bluetooth On",
+    "tooltip-format-off": "Bluetooth Off",
+    "tooltip-format-no-controller": "No Bluetooth Controller",
+    "on-click": "alacritty -e bluetui"
+  },
+  "custom/power": {
+    "interval": "once",
+    "format": "",
+    "on-click": "~/.local/bin/power_menu",
+    "tooltip": false
+  }
+}
